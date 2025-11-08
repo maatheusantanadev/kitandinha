@@ -1,0 +1,328 @@
+
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kitandinha</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.0/font/bootstrap-icons.css">
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+
+    <header class="header">
+        <div class="container">
+            <div class="header-content">
+                <a href="#" class="logo">✨ KITANDINHA</a>
+                <div class="header-actions">
+                    <div class="social-links">
+                        <a href="https://wa.me/5575991976897" target="_blank" title="WhatsApp">
+                            <i class="bi bi-whatsapp"></i>
+                        </a>
+                        <a href="https://www.instagram.com/kitandinhaexpress?igsh=MWR2M3cwYnI5NWow" target="_blank" title="Instagram">
+                            <i class="bi bi-instagram"></i>
+                        </a>
+                    </div>
+                    <button class="cart-btn" data-bs-toggle="modal" data-bs-target="#cartModal">
+                        <i class="bi bi-bag-fill"></i> Carrinho
+                        <span class="cart-badge" id="cartCount">0</span>
+                    </button>
+                    <button class="admin-btn" data-bs-toggle="modal" data-bs-target="#loginModal">
+                        <i class="bi bi-person-fill"></i> Admin
+                    </button>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <section class="search-filter-section">
+        <div class="container">
+            <div class="search-box">
+                <input type="text" id="searchInput" placeholder="Pesquisar produtos...">
+                <i class="bi bi-search"></i>
+            </div>
+        </div>
+    </section>
+
+    <main class="container">
+        <div class="row mt-4">
+            <div class="col-lg-3">
+                <div class="filter-section">
+                    <h5 class="filter-title">Filtros</h5>
+
+                    <div class="filter-group">
+                        <strong class="filter-title" style="font-size: 0.95rem;">Marca</strong>
+                        <label><input type="checkbox" value="Casal Garcia" class="filter-marca"> Casal Garcia</label>
+                        <label><input type="checkbox" value="Diana" class="filter-marca"> Diana</label>
+                        <label><input type="checkbox" value="Kitandinha" class="filter-marca"> Kitandinha</label>
+                        <label><input type="checkbox" value="Premium Select" class="filter-marca"> Premium Select</label>
+                    </div>
+
+                    <div class="filter-group">
+                      <strong class="filter-title" style="font-size: 0.95rem;">Tipo</strong>
+
+                      <!-- Tipo principal -->
+                      <div id="filters">
+                          <!-- VINHOS -->
+                          <label>
+                            <input type="checkbox" value="Vinho" class="filter-tipo" onchange="toggleSubcategory('vinho')"> Vinho
+                          </label>
+                          <div id="sub-vinho" class="subcategory-group" style="display: none; margin-left: 1rem;">
+                            <label><input type="checkbox" value="Vinho Tinto Seco" class="filter-subtipo"> Tinto Seco</label><br>
+                            <label><input type="checkbox" value="Vinho Tinto Suave" class="filter-subtipo"> Tinto Suave</label><br>
+                            <label><input type="checkbox" value="Vinho Branco" class="filter-subtipo"> Branco</label><br>
+                            <label><input type="checkbox" value="Vinho Rosé" class="filter-subtipo"> Rosé</label><br>
+                            <label><input type="checkbox" value="Espumantes" class="filter-subtipo"> Espumantes</label><br>
+                            <label><input type="checkbox" value="Vinhos Chilenos" class="filter-subtipo"> Chilenos</label><br>
+                            <label><input type="checkbox" value="Vinhos Argentinos" class="filter-subtipo"> Argentinos</label><br>
+                            <label><input type="checkbox" value="Vinhos Espanhóis" class="filter-subtipo"> Espanhóis</label><br>
+                            <label><input type="checkbox" value="Rótulos Baianos" class="filter-subtipo"> Rótulos Baianos</label><br>
+                            <label><input type="checkbox" value="UVVA & Vinhos Vale do Capão" class="filter-subtipo"> UVVA & Vale do Capão</label>
+                          </div>
+
+                          <!-- QUEIJOS -->
+                          <label>
+                            <input type="checkbox" value="Queijo" class="filter-tipo" onchange="toggleSubcategory('queijo')"> Queijo
+                          </label>
+                          <div id="sub-queijo" class="subcategory-group" style="display: none; margin-left: 1rem;">
+                            <strong>Tradicionais</strong><br>
+                            <label><input type="checkbox" value="Coalho tradicional" class="filter-subtipo"> Coalho Tradicional</label><br>
+                            <label><input type="checkbox" value="Coalho com orégano" class="filter-subtipo"> Coalho com Orégano</label><br>
+                            <label><input type="checkbox" value="Coalho com manjericão" class="filter-subtipo"> Coalho com Manjericão</label><br>
+                            <label><input type="checkbox" value="Coalho vinagrete" class="filter-subtipo"> Coalho Vinagrete</label><br>
+                            <label><input type="checkbox" value="Coalho pimenta calabresa" class="filter-subtipo"> Coalho Pimenta Calabresa</label><br><br>
+
+                            <strong>Especiais</strong><br>
+                            <label><input type="checkbox" value="Vovó Vânia" class="filter-subtipo"> Vovó Vânia</label><br>
+                            <label><input type="checkbox" value="Red Orobó" class="filter-subtipo"> Red Orobó</label><br>
+                            <label><input type="checkbox" value="Smoke" class="filter-subtipo"> Smoke</label><br><br>
+
+                            <strong>Maturados</strong><br>
+                            <label><input type="checkbox" value="Black Orobó" class="filter-subtipo"> Black Orobó</label><br>
+                            <label><input type="checkbox" value="Gibão de couro" class="filter-subtipo"> Gibão de Couro</label><br>
+                            <label><input type="checkbox" value="Serra do Orobó" class="filter-subtipo"> Serra do Orobó</label><br>
+                            <label><input type="checkbox" value="Sabor do campo" class="filter-subtipo"> Sabor do Campo</label>
+                          </div>
+
+                          <!-- LINGUIÇAS -->
+                          <label>
+                            <input type="checkbox" value="Linguica" class="filter-tipo" onchange="toggleSubcategory('linguica')"> Linguiça
+                          </label>
+                          <div id="sub-linguica" class="subcategory-group" style="display: none; margin-left: 1rem;">
+                            <strong>Suíno</strong><br>
+                            <label><input type="checkbox" value="Tradicional" class="filter-subtipo"> Tradicional</label><br>
+                            <label><input type="checkbox" value="Cuiabana Queijo c/ Rúcula" class="filter-subtipo"> Cuiabana Queijo c/ Rúcula</label><br>
+                            <label><input type="checkbox" value="Apimentada" class="filter-subtipo"> Apimentada</label><br>
+                            <label><input type="checkbox" value="Pimenta Biquinho" class="filter-subtipo"> Pimenta Biquinho</label><br>
+                            <label><input type="checkbox" value="Palmito" class="filter-subtipo"> Palmito</label><br>
+                            <label><input type="checkbox" value="Azeitona" class="filter-subtipo"> Azeitona</label><br><br>
+
+                            <strong>Bovina</strong><br>
+                            <label><input type="checkbox" value="Costela" class="filter-subtipo"> Costela</label><br>
+                            <label><input type="checkbox" value="Picanha" class="filter-subtipo"> Picanha</label><br>
+                            <label><input type="checkbox" value="Mista" class="filter-subtipo"> Mista</label><br>
+                            <label><input type="checkbox" value="Apimentada Bovina" class="filter-subtipo"> Apimentada</label><br><br>
+
+                            <strong>Frango</strong><br>
+                            <label><input type="checkbox" value="Frango Tradicional" class="filter-subtipo"> Tradicional</label><br>
+                            <label><input type="checkbox" value="Frango Apimentada" class="filter-subtipo"> Apimentada</label><br>
+                            <label><input type="checkbox" value="Frango Bacon" class="filter-subtipo"> Bacon</label>
+                          </div>
+                        </div>
+
+                    <div class="filter-group">
+                        <strong class="filter-title" style="font-size: 0.95rem;">Faixa de Preço</strong>
+                        <label>Mínimo (R$)</label>
+                        <input type="number" id="priceMin" placeholder="0" min="0">
+                        <label style="margin-top: 0.5rem;">Máximo (R$)</label>
+                        <input type="number" id="priceMax" placeholder="1000" min="0">
+                    </div>
+
+                        <button class="btn btn-success w-100" onclick="applyFilters()">Aplicar Filtros</button>
+                        <button class="btn btn-outline-secondary w-100 mt-2" onclick="clearFilters()">Limpar</button>
+                    </div>
+                </div> 
+              </div> 
+
+            <div class="col-lg-9">
+                <section class="products-section">
+                    <h3 style="color: var(--primary-dark); margin-bottom: 2rem;">Produtos em Destaque</h3>
+                    <div class="row" id="productsGrid">
+                        <!-- Produtos serão inseridos aqui por JavaScript -->
+                    </div>
+                </section>
+            </div>
+        </div>
+    </main>
+
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2025 Loja Premium. Todos os direitos reservados.</p>
+        </div>
+    </footer>
+
+    <div class="modal fade" id="loginModal" tabindex="-1">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Login Administrativo</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="mb-3">
+                        <label class="form-label">Senha</label>
+                        <input type="password" id="adminPassword" class="form-control" placeholder="Digite a senha">
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+                    <button type="button" class="btn btn-success" onclick="loginAdmin()">Entrar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade" id="adminModal" tabindex="-1">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Painel Administrativo</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body">
+                    <ul class="nav nav-tabs mb-3" id="adminTabs">
+                        <li class="nav-item">
+                            <button class="nav-link active" id="addProductTab" data-bs-toggle="tab" data-bs-target="#addProduct">Adicionar Produto</button>
+                        </li>
+                        <li class="nav-item">
+                            <button class="nav-link" id="listProductsTab" data-bs-toggle="tab" data-bs-target="#listProducts">Listar Produtos</button>
+                        </li>
+                    </ul>
+
+                    <div class="tab-content">
+                        <div class="tab-pane fade show active" id="addProduct">
+                            <form id="addProductForm">
+                              <div class="mb-3">
+                                <label class="form-label">Nome do Produto</label>
+                                <input type="text" class="form-control" id="productName" placeholder="Ex: Vinho Casal Garcia Fruitzy" required>
+                              </div>
+
+                              <div class="mb-3">
+                                <label class="form-label">Marca</label>
+                                <input type="text" class="form-control" id="productBrand" placeholder="Ex: Casal Garcia" required>
+                              </div>
+
+                              <div class="mb-3">
+                                <label class="form-label">Tipo</label>
+                                <select class="form-select" id="productType" required onchange="updateSubtypeOptions()">
+                                  <option value="">Selecione o tipo...</option>
+                                  <option value="Vinho">Vinho</option>
+                                  <option value="Queijo">Queijo</option>
+                                  <option value="Linguiça">Linguiça</option>
+                                  <option value="Azeite">Azeite</option>
+                                </select>
+                              </div>
+
+                              <!-- Subtipo dinâmico -->
+                              <div class="mb-3" id="subtypeContainer" style="display: none;">
+                                <label class="form-label">Subtipo</label>
+                                <select class="form-select" id="productSubtype">
+                                  <option value="">Selecione o subtipo...</option>
+                                </select>
+                              </div>
+
+                              <div class="mb-3">
+                                <label class="form-label">Preço (R$)</label>
+                                <input type="number" class="form-control" id="productPrice" placeholder="0.00" step="0.01" required>
+                              </div>
+
+                              <div class="file-input-wrapper">
+                                <label class="file-input-label" id="fileInputLabel" for="productImageFile">
+                                  <i class="bi bi-cloud-upload"></i>
+                                  <span>Clique ou arraste uma imagem aqui</span>
+                                </label>
+                                <input type="file" id="productImageFile" accept="image/*" required>
+                              </div>
+
+                              <div class="image-preview-container" id="previewContainer">
+                                <img id="imagePreview" alt="Preview da imagem">
+                                <button type="button" class="remove-image-btn" onclick="removeImage()">Remover Imagem</button>
+                              </div>
+
+                              <button type="submit" class="btn btn-success w-100" style="padding: 0.75rem; font-weight: 600;">Adicionar Produto</button>
+                            </form>
+                        </div>
+
+                        <div class="tab-pane fade" id="listProducts">
+                            <div id="adminProductsList"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade" id="productDetailsModal" tabindex="-1">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Detalhes do Produto</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body">
+                    <img id="detailImage" class="product-detail-image" alt="Produto">
+                    <div class="product-detail-info">
+                        <span id="detailBrand" class="product-brand"></span>
+                        <h3 id="detailName" style="color: var(--primary-dark); font-weight: 700; margin: 1rem 0;"></h3>
+                        <p id="detailType" class="product-type"></p>
+                        <p id="detailSubtype" class="product-subtype"></p>
+                        <p id="detailPrice" class="product-price"></p>
+                    </div>
+
+                    <div class="product-detail-label">Quantidade</div>
+                    <div class="quantity-selector">
+                        <button type="button" class="quantity-btn" onclick="decreaseQuantity()">−</button>
+                        <span class="quantity-display" id="quantityDisplay">1</span>
+                        <button type="button" class="quantity-btn" onclick="increaseQuantity()">+</button>
+                    </div>
+
+                    <button class="btn-add-cart" onclick="addToCart()">
+                        <i class="bi bi-bag-plus"></i> Adicionar ao Carrinho
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade" id="cartModal" tabindex="-1">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Seu Carrinho</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body">
+                    <div id="cartItemsContainer">
+                        <!-- Itens do carrinho serão inseridos aqui -->
+                    </div>
+                    <div id="emptyCrt" class="empty-cart-message" style="display: none;">
+                        <i class="bi bi-bag"></i>
+                        <p>Seu carrinho está vazio</p>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Continuar Comprando</button>
+                    <button type="button" class="btn btn-success" onclick="finalizeOrderWhatsApp()" id="btnCheckout">
+                        <i class="bi bi-whatsapp"></i> Finalizar pelo WhatsApp
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="js/config.js"></script>
+
+</body>
+</html>
